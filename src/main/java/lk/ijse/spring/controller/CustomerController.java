@@ -38,15 +38,13 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCustomer(@RequestPart("file") MultipartFile[] files,@RequestPart("customer") CustomerDTO customerDTO) {
-        System.out.println("01");
+
         for (MultipartFile myFile: files) {
             try {
-                System.out.println("02");
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
                 File uploadsDir = new File(projectPath + "/uploads");
                 uploadsDir.mkdir();
                 myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
-                System.out.println("03");
 
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
