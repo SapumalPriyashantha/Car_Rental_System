@@ -25,9 +25,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void saveCustomer(CustomerDTO dto) {
         if (!repo.existsById(dto.getNic())) {
-            //Customer entity = mapper.map(dto, Customer.class);
-            //01. Source -> main source
-            //02. Destination Type -> class type which we want to convert the source
             repo.save(mapper.map(dto, Customer.class));
         } else {
             throw new RuntimeException("Customer Already Exist..!");
@@ -35,38 +32,38 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
-    @Override
-    public void deleteCustomer(String id) {
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
-        } else {
-            throw new RuntimeException("Please check the Customer ID.. No Such Customer..!");
-        }
-
-    }
-
-    @Override
-    public void updateCustomer(CustomerDTO dto) {
-        if (repo.existsById(dto.getNic())) {
-            repo.save(mapper.map(dto, Customer.class));
-        } else {
-            throw new RuntimeException("No Such Customer To Update..! Please Check the ID..!");
-        }
-
-    }
-
-    @Override
-    public CustomerDTO searchCustomer(String id) {
-        if (repo.existsById(id)) {
-            return mapper.map(repo.findById(id).get(), CustomerDTO.class);
-        } else {
-            throw new RuntimeException("No Customer For " + id + " ..!");
-        }
-    }
-
-    @Override
-    public List<CustomerDTO> getAllCustomers() {
-        return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
-        }.getType());
-    }
+//    @Override
+//    public void deleteCustomer(String id) {
+//        if (repo.existsById(id)) {
+//            repo.deleteById(id);
+//        } else {
+//            throw new RuntimeException("Please check the Customer ID.. No Such Customer..!");
+//        }
+//
+//    }
+//
+//    @Override
+//    public void updateCustomer(CustomerDTO dto) {
+//        if (repo.existsById(dto.getNic())) {
+//            repo.save(mapper.map(dto, Customer.class));
+//        } else {
+//            throw new RuntimeException("No Such Customer To Update..! Please Check the ID..!");
+//        }
+//
+//    }
+//
+//    @Override
+//    public CustomerDTO searchCustomer(String id) {
+//        if (repo.existsById(id)) {
+//            return mapper.map(repo.findById(id).get(), CustomerDTO.class);
+//        } else {
+//            throw new RuntimeException("No Customer For " + id + " ..!");
+//        }
+//    }
+//
+//    @Override
+//    public List<CustomerDTO> getAllCustomers() {
+//        return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
+//        }.getType());
+//    }
 }
