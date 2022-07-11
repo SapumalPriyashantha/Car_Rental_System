@@ -22,6 +22,9 @@ public class Driver {
     private String con_number;
     private String status;
 
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
     private List<DriverSchedule>driverSchedules;
+
+    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Reservation>reservations;
 }
