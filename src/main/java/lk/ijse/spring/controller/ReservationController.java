@@ -44,4 +44,9 @@ public class ReservationController {
 
         return new ResponseUtil(200,"Registration Success",null);
     }
+
+    @GetMapping(path = "/{nic}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchReservationByCustomerId(@PathVariable("nic") String id) {
+        return new ResponseUtil(200,"Ok",reservationService.searchReservationByCustomerId(id));
+    }
 }
