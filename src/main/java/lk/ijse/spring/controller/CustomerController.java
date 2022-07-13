@@ -27,13 +27,6 @@ public class CustomerController {
 //         return new ResponseUtil(200,"Ok",customerService.getAllCustomers());
 //    }
 
-//    @ResponseStatus(HttpStatus.CREATED) //201
-//    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseUtil saveCustomer(@ModelAttribute CustomerDTO customer, @RequestPart MultipartFile file) {
-//        customerService.saveCustomer(customer);
-//        return new ResponseUtil(200,"Save",null);
-//    }
-
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,11 +53,11 @@ public class CustomerController {
     }
 
 
-//    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customer) {
-//        customerService.updateCustomer(customer);
-//        return new ResponseUtil(200,"Updated",null);
-//    }
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customer) {
+        customerService.updateCustomer(customer);
+        return new ResponseUtil(200,"Updated Customer",null);
+    }
 //
 //    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseUtil deleteCustomer(@RequestParam String id) {

@@ -42,16 +42,16 @@ public class CustomerServiceImpl implements CustomerService {
 //
 //    }
 //
-//    @Override
-//    public void updateCustomer(CustomerDTO dto) {
-//        if (repo.existsById(dto.getNic())) {
-//            repo.save(mapper.map(dto, Customer.class));
-//        } else {
-//            throw new RuntimeException("No Such Customer To Update..! Please Check the ID..!");
-//        }
-//
-//    }
-//
+    @Override
+    public void updateCustomer(CustomerDTO dto) {
+        if (repo.existsById(dto.getNic())) {
+            repo.save(mapper.map(dto, Customer.class));
+        } else {
+            throw new RuntimeException("No Such Customer To Update..! Please Check the ID..!");
+        }
+
+    }
+
     @Override
     public CustomerDTO searchCustomer(String id) {
         if (repo.existsById(id)) {
