@@ -26,8 +26,8 @@ public class CarController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCar(@RequestPart("file") MultipartFile[] files, @RequestPart("car") CarDTO carDTO) {
-        System.out.println("working01");
-            String pic01 = null; String pic02 = null; String pic03 = null; String pic04 = null;
+        System.out.println(carDTO.toString());
+//            String pic01 = null; String pic02 = null; String pic03 = null; String pic04 = null;
         for (MultipartFile myFile: files) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -35,15 +35,15 @@ public class CarController {
                 uploadsDir.mkdir();
                 myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
 
-                if( pic01==null){
-                    pic01=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-                }else if (pic02==null){
-                    pic02=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-                }else if (pic03==null){
-                    pic03=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-                }else {
-                    pic04=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-                }
+//                if( pic01==null){
+//                    pic01=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
+//                }else if (pic02==null){
+//                    pic02=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
+//                }else if (pic03==null){
+//                    pic03=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
+//                }else {
+//                    pic04=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
+//                }
                 System.out.println("working02");
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();

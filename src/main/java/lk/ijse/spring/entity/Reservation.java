@@ -1,5 +1,6 @@
 package lk.ijse.spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.sql.Time;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 @ToString
 @Entity(name = "car_reservation")
 public class Reservation {
@@ -23,7 +24,7 @@ public class Reservation {
     private String bank_slip_img;
     private String reservation_status;
     private String driver_status;
-    private String reason;
+    private String reason; 
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn

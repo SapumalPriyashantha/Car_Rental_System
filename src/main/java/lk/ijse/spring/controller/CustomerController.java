@@ -38,7 +38,6 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCustomer(@RequestPart("file") MultipartFile[] files,@RequestPart("customer") CustomerDTO customerDTO) {
-
         for (MultipartFile myFile: files) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();

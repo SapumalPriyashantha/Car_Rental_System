@@ -23,7 +23,7 @@ public class DriverSchedule {
     private Date start_date;
     private Date end_date;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn
     private Driver driver;
 

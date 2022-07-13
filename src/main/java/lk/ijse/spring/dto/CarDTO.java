@@ -28,5 +28,5 @@ public class CarDTO {
     private BigDecimal price_for_extra_km;
     private String status;
 
-    private CarImgDetailsDTO carImgDetailDTO;
+    private CarImgDetailsDTO carImgDetail;
 }
