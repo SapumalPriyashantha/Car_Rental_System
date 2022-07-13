@@ -52,14 +52,14 @@ public class CustomerServiceImpl implements CustomerService {
 //
 //    }
 //
-//    @Override
-//    public CustomerDTO searchCustomer(String id) {
-//        if (repo.existsById(id)) {
-//            return mapper.map(repo.findById(id).get(), CustomerDTO.class);
-//        } else {
-//            throw new RuntimeException("No Customer For " + id + " ..!");
-//        }
-//    }
+    @Override
+    public CustomerDTO searchCustomer(String id) {
+        if (repo.existsById(id)) {
+            return mapper.map(repo.findById(id).get(), CustomerDTO.class);
+        } else {
+            throw new RuntimeException("No Customer For " + id + " ..!");
+        }
+    }
 //
 //    @Override
 //    public List<CustomerDTO> getAllCustomers() {
