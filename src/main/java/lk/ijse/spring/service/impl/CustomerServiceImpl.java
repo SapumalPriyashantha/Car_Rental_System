@@ -32,16 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     }
 
-//    @Override
-//    public void deleteCustomer(String id) {
-//        if (repo.existsById(id)) {
-//            repo.deleteById(id);
-//        } else {
-//            throw new RuntimeException("Please check the Customer ID.. No Such Customer..!");
-//        }
-//
-//    }
-//
     @Override
     public void updateCustomer(CustomerDTO dto) {
         if (repo.existsById(dto.getNic())) {
@@ -60,10 +50,10 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("No Customer For " + id + " ..!");
         }
     }
-//
-//    @Override
-//    public List<CustomerDTO> getAllCustomers() {
-//        return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
-//        }.getType());
-//    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomers() {
+        return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
+        }.getType());
+    }
 }

@@ -22,10 +22,10 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseUtil getAllCustomers() {
-//         return new ResponseUtil(200,"Ok",customerService.getAllCustomers());
-//    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllCustomers() {
+         return new ResponseUtil(200,"Ok",customerService.getAllCustomers());
+    }
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -58,13 +58,7 @@ public class CustomerController {
         customerService.updateCustomer(customer);
         return new ResponseUtil(200,"Updated Customer",null);
     }
-//
-//    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseUtil deleteCustomer(@RequestParam String id) {
-//        customerService.deleteCustomer(id);
-//        return new ResponseUtil(200,"Deleted",null);
-//    }
-//
+
     @GetMapping(path = "/{nic}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchCustomer(@PathVariable("nic") String id) {
         return new ResponseUtil(200,"Ok",customerService.searchCustomer(id));
