@@ -56,4 +56,10 @@ public class CustomerServiceImpl implements CustomerService {
         return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
         }.getType());
     }
+
+    @Override
+    public List<CustomerDTO> registeredCustomerByDate() {
+        return mapper.map(repo.registeredCustomerByDate(), new TypeToken<List<CustomerDTO>>() {
+        }.getType());
+    }
 }

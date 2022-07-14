@@ -64,5 +64,9 @@ public class CustomerController {
         return new ResponseUtil(200,"Ok",customerService.searchCustomer(id));
     }
 
+    @GetMapping(path = "toDayRegisterCustomer",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil todayRegisteredCustomers() {
+        return new ResponseUtil(200,"Ok",customerService.registeredCustomerByDate());
+    }
 
 }

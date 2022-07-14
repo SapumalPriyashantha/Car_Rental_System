@@ -1,9 +1,12 @@
 package lk.ijse.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,4 +24,6 @@ public class CustomerDTO {
     private String address;
     private String con_number;
     private String email;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Kolkata")
+    private Date register_date;
 }

@@ -10,12 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReservationRepo extends JpaRepository<Reservation, String> {
-//    @Modifying
-//    @Query(value = "select c from Customer c where c.id=?1")
-    @Query(value = "select * from car_reservation where customer.nic=?1 ", nativeQuery = true)
+
+    @Query(value = "select * from car_reservation where customer_nic=?1 ", nativeQuery = true)
     List<Reservation> searchReservationByCustomerId(String id);
-
-    List<Reservation> findAllByCustomer(Customer customer);
-
 
 }

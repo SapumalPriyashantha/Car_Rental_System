@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -26,6 +27,7 @@ public class Customer {
     private String address;
     private String con_number;
     private String email;
+    private Date register_date;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Reservation>reservations;

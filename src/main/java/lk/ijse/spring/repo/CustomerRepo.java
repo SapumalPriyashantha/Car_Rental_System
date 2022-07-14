@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface CustomerRepo extends JpaRepository<Customer, String> {
 
-
+    @Query(value = "select * from customer where register_date=current_date() ", nativeQuery = true)
+    List<Customer> registeredCustomerByDate();
 //    //query methods
 //    Customer findCustomerByName(String name);
 //
