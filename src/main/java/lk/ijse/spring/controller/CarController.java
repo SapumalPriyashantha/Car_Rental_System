@@ -73,7 +73,12 @@ public class CarController {
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCar(@RequestBody CarDTO car) {
         carService.updateCar(car);
-        return new ResponseUtil(200,"Updated Customer",null);
+        return new ResponseUtil(200,"Updated Car",null);
+    }
+
+    @GetMapping(path="getAvailableCarsForCustomers",params={"pick_up_date","return_date","type","transmission"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil availableCarsForCustomers(@RequestParam("pick_up_date")String pickUp_date,@RequestParam("return_date")String return_date,@RequestParam("type")String type,@RequestParam("transmission")String transmission) {
+        return new ResponseUtil(200,"Ok",carService.availableCarsForCustomers(pickUp_date,return_date,type,transmission));
     }
 
 }

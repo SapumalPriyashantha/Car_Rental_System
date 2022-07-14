@@ -55,4 +55,11 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("No Such Car To Update..! Please Check the ID..!");
         }
     }
+
+    @Override
+    public List<CarDTO> availableCarsForCustomers(String pick_date, String return_date, String type, String transmission) {
+        return mapper.map(repo.availableCarsForCustomers(pick_date,return_date,type,transmission), new TypeToken<List<CarDTO>>() {
+        }.getType());
+    }
+
 }
