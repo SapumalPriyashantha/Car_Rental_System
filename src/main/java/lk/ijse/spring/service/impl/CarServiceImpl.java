@@ -28,10 +28,8 @@ public class CarServiceImpl implements CarService {
     @Override
     public void saveCar(CarDTO dto) {
         if (!repo.existsById(dto.getRegistration_no())) {
-            System.out.println("working04");
             repo.save(mapper.map(dto, Car.class));
         } else {
-            System.out.println("working05");
             throw new RuntimeException("Car Already Exist..!");
         }
 
@@ -41,5 +39,20 @@ public class CarServiceImpl implements CarService {
     public List<CarDTO> searchCar(String type, String transmission) {
         return mapper.map(repo.searchCar(type,transmission), new TypeToken<List<CarDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public List<CarDTO> getAllCar() {
+        return mapper.map(repo.findAll(), new TypeToken<List<CarDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public void updateCar(CarDTO dto) {
+        if (repo.existsById(dto.getRegistration_no())) {
+            repo.save(mapper.map(dto, Car.class));
+        } else {
+            throw new RuntimeException("No Such Car To Update..! Please Check the ID..!");
+        }
     }
 }

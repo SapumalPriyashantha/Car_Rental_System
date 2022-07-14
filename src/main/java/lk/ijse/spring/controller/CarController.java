@@ -44,7 +44,6 @@ public class CarController {
 //                }else {
 //                    pic04=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
 //                }
-                System.out.println("working02");
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
                 return new ResponseUtil(500, " Registration failed", null);
@@ -56,7 +55,6 @@ public class CarController {
 //        carDTO.getCarImgDetailDTO().setSide_01("side01.png");
 //        carDTO.getCarImgDetailDTO().setSide_02("side02.png");
         //car eke pic save wen nehe id eka genaret wen nehe
-        System.out.println("working03");
         carService.saveCar(carDTO);
 
         return new ResponseUtil(200,"Registration Success",null);
@@ -66,4 +64,16 @@ public class CarController {
     public ResponseUtil searchCar(@PathVariable("type") String type,@PathVariable("transmission") String transmission) {
         return new ResponseUtil(200,"Ok",carService.searchCar(type,transmission));
     }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllCar() {
+        return new ResponseUtil(200,"Ok",carService.getAllCar());
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCar(@RequestBody CarDTO car) {
+        carService.updateCar(car);
+        return new ResponseUtil(200,"Updated Customer",null);
+    }
+
 }
