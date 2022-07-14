@@ -8,9 +8,12 @@ import lk.ijse.spring.repo.CarRepo;
 import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.service.CarService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -32,5 +35,11 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("Car Already Exist..!");
         }
 
+    }
+
+    @Override
+    public List<CarDTO> searchCar(String type, String transmission) {
+        return mapper.map(repo.searchCar(type,transmission), new TypeToken<List<CarDTO>>() {
+        }.getType());
     }
 }
