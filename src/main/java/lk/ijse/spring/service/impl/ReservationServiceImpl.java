@@ -70,5 +70,11 @@ public class ReservationServiceImpl implements ReservationService {
         }.getType());
     }
 
+    @Override
+    public List<ReservationDTO> getPendingReservation(String nic, String pending_status) {
+        return mapper.map(repo.getReservations(nic,pending_status), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
 
 }

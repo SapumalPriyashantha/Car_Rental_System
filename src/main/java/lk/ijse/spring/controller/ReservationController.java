@@ -65,4 +65,9 @@ public class ReservationController {
     public ResponseUtil getDenyReservation(@RequestParam("nic")String nic,@RequestParam("deny_status")String deny_status) {
         return new ResponseUtil(200,"ok",reservationService.getDenyReservation(nic,deny_status));
     }
+
+    @GetMapping(path="pendingReservation",params={"nic","pending_status"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getPendingReservation(@RequestParam("nic")String nic,@RequestParam("pending_status")String pending_status) {
+        return new ResponseUtil(200,"ok",reservationService.getPendingReservation(nic,pending_status));
+    }
 }
