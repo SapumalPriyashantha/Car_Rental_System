@@ -86,4 +86,10 @@ public class CarController {
         return new ResponseUtil(200,"Ok",carService.unavailableCarForAdmin(start_date,end_date));
     }
 
+    @PutMapping(path="updateStatusForCar",params={"registration_no","status"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateStatusForCar(@RequestParam("registration_no")String registration_no,@RequestParam("status")String status) {
+        carService.updateStatusForCar(registration_no,status);
+        return new ResponseUtil(200,"updated status for car",null);
+    }
+
 }

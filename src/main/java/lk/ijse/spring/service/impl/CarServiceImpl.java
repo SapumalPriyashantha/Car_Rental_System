@@ -68,4 +68,15 @@ public class CarServiceImpl implements CarService {
         }.getType());
     }
 
+    @Override
+    public void updateStatusForCar(String registration_no, String status) {
+        if (repo.existsById(registration_no)) {
+            Car car = repo.findById(registration_no).get();
+            car.setStatus(status);
+            repo.save(car);
+        } else {
+            throw new RuntimeException("No Such Car To Update Status..! Please Check the ID..!");
+        }
+    }
+
 }
