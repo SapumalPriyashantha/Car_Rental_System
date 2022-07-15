@@ -62,4 +62,10 @@ public class CarServiceImpl implements CarService {
         }.getType());
     }
 
+    @Override
+    public List<CarDTO> unavailableCarForAdmin(String start_date, String end_date) {
+        return mapper.map(repo.unavailableCarForAdmin(start_date,end_date), new TypeToken<List<CarDTO>>() {
+        }.getType());
+    }
+
 }

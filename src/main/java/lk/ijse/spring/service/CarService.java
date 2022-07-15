@@ -11,4 +11,5 @@ public interface CarService {
     List<CarDTO> getAllCar();
     void updateCar(CarDTO dto);
     List<CarDTO> availableCarsForCustomers(String pick_date,String return_date,String type,String transmission);
+    List<CarDTO> unavailableCarForAdmin(String start_date,String end_date);
 }

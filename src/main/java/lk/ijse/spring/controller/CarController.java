@@ -81,4 +81,9 @@ public class CarController {
         return new ResponseUtil(200,"Ok",carService.availableCarsForCustomers(pickUp_date,return_date,type,transmission));
     }
 
+    @GetMapping(path="unavailableCarForAdmin",params={"start_date","end_date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil unavailableCarForAdmin(@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+        return new ResponseUtil(200,"Ok",carService.unavailableCarForAdmin(start_date,end_date));
+    }
+
 }
