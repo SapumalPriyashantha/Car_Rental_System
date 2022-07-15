@@ -49,4 +49,10 @@ public class ReservationController {
     public ResponseUtil searchReservationByCustomerId(@PathVariable("nic") String id) {
         return new ResponseUtil(200,"Ok",reservationService.searchReservationByCustomerId(id));
     }
+
+    @PutMapping(path="updateReservationStatus",params={"reservation_id","reservation_status"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateReservationStatus(@RequestParam("reservation_id")String reservation_id,@RequestParam("reservation_status")String reservation_status) {
+        reservationService.updateReservationStatus(reservation_id,reservation_status);
+        return new ResponseUtil(200,"Updated Reservation Status",null);
+    }
 }

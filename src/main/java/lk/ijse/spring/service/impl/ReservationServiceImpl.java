@@ -30,9 +30,6 @@ public class ReservationServiceImpl implements ReservationService {
     private ReservationRepo repo;
 
     @Autowired
-    private CustomerRepo customer_repo;
-
-    @Autowired
     private ModelMapper mapper;
 
     @Override
@@ -46,9 +43,19 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<ReservationDTO> searchReservationByCustomerId(String cust_nic) {
-//        Optional<Customer> byId = customer_repo.findById(cust_nic);
         return mapper.map(repo.searchReservationByCustomerId(cust_nic), new TypeToken<List<ReservationDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public void updateReservationStatus(String reservation_id, String reservation_status) {
+        if (repo.existsById(reservation_id)) {
+            Reservation reservation = repo.findById(reservation_id).get();
+            reservation.setReservation_status(reservation_status);
+            repo.save(reservation);
+        } else {
+            throw new RuntimeException("No Such Reservation To Update Status..! Please Check the ID..!");
+        }
     }
 
 
