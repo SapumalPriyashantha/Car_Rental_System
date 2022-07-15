@@ -58,5 +58,11 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
+    @Override
+    public List<ReservationDTO> getAcceptReservation(String nic, String accept_status) {
+        return mapper.map(repo.getAcceptReservation(nic,accept_status), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
 
 }

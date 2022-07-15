@@ -8,4 +8,5 @@ public interface ReservationService {
     void saveReservation(ReservationDTO dto);
     List<ReservationDTO> searchReservationByCustomerId(String cust_nic);
     void updateReservationStatus(String reservation_id, String reservation_status);
+    List<ReservationDTO> getAcceptReservation(String nic,String accept_status);
 }

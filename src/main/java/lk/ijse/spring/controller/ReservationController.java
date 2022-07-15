@@ -55,4 +55,9 @@ public class ReservationController {
         reservationService.updateReservationStatus(reservation_id,reservation_status);
         return new ResponseUtil(200,"Updated Reservation Status",null);
     }
+
+    @GetMapping(path="acceptReservation",params={"nic","accept_status"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAcceptReservation(@RequestParam("nic")String nic,@RequestParam("accept_status")String accept_status) {
+        return new ResponseUtil(200,"ok",reservationService.getAcceptReservation(nic,accept_status));
+    }
 }
