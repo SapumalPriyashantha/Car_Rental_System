@@ -60,4 +60,9 @@ public class ReservationController {
     public ResponseUtil getAcceptReservation(@RequestParam("nic")String nic,@RequestParam("accept_status")String accept_status) {
         return new ResponseUtil(200,"ok",reservationService.getAcceptReservation(nic,accept_status));
     }
+
+    @GetMapping(path="denyReservation",params={"nic","deny_status"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getDenyReservation(@RequestParam("nic")String nic,@RequestParam("deny_status")String deny_status) {
+        return new ResponseUtil(200,"ok",reservationService.getDenyReservation(nic,deny_status));
+    }
 }

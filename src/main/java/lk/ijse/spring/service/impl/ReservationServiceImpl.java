@@ -60,7 +60,13 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public List<ReservationDTO> getAcceptReservation(String nic, String accept_status) {
-        return mapper.map(repo.getAcceptReservation(nic,accept_status), new TypeToken<List<ReservationDTO>>() {
+        return mapper.map(repo.getReservations(nic,accept_status), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<ReservationDTO> getDenyReservation(String nic, String deny_status) {
+        return mapper.map(repo.getReservations(nic,deny_status), new TypeToken<List<ReservationDTO>>() {
         }.getType());
     }
 

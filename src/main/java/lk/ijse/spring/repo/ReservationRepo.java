@@ -15,6 +15,6 @@ public interface ReservationRepo extends JpaRepository<Reservation, String> {
     List<Reservation> searchReservationByCustomerId(String id);
 
     @Query(value = "select * from car_reservation where customer_nic=?1 and reservation_status=?2", nativeQuery = true)
-    List<Reservation> getAcceptReservation(String nic,String accept_status);
+    List<Reservation> getReservations(String nic,String status);
 
 }
