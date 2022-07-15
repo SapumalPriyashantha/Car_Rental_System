@@ -79,4 +79,15 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    @Override
+    public void updateTotalKMForCar(String registration_no, int KM) {
+        if (repo.existsById(registration_no)) {
+            Car car = repo.findById(registration_no).get();
+            car.setKm(car.getKm()+KM);
+            repo.save(car);
+        } else {
+            throw new RuntimeException("No Such Car To Update KM..! Please Check the ID..!");
+        }
+    }
+
 }

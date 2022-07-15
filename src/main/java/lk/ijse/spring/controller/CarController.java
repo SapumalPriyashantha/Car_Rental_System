@@ -91,5 +91,10 @@ public class CarController {
         carService.updateStatusForCar(registration_no,status);
         return new ResponseUtil(200,"updated status for car",null);
     }
+    @PutMapping(path="updateTotalKMForCar",params={"registration_no","KM"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateTotalKMForCar(@RequestParam("registration_no")String registration_no,@RequestParam("KM")int KM) {
+        carService.updateTotalKMForCar(registration_no,KM);
+        return new ResponseUtil(200,"updated Total KM for car",null);
+    }
 
 }
