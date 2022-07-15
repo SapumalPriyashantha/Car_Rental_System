@@ -70,4 +70,9 @@ public class ReservationController {
     public ResponseUtil getPendingReservation(@RequestParam("nic")String nic,@RequestParam("pending_status")String pending_status) {
         return new ResponseUtil(200,"ok",reservationService.getPendingReservation(nic,pending_status));
     }
+
+    @GetMapping(path="generateOrderId",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generateOrderId() {
+        return new ResponseUtil(200,"ok",reservationService.getGenerateOrderId());
+    }
 }

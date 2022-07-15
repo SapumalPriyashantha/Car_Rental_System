@@ -76,5 +76,26 @@ public class ReservationServiceImpl implements ReservationService {
         }.getType());
     }
 
+    @Override
+    public String getGenerateOrderId() {
+        String RE_Id = repo.getGenerateOrderId();
+
+        if (RE_Id != null){
+            int tempId = Integer.
+                    parseInt(RE_Id.split("re")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                return "RE-00"+tempId;
+            }else if(tempId<99){
+                return "RE-0"+tempId;
+            }else{
+                return "RE-"+tempId;
+            }
+
+        }else{
+            return "RE-001";
+        }
+    }
+
 
 }

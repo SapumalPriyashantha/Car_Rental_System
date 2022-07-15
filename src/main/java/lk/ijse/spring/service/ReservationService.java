@@ -11,4 +11,5 @@ public interface ReservationService {
     List<ReservationDTO> getAcceptReservation(String nic,String accept_status);
     List<ReservationDTO> getDenyReservation(String nic,String deny_status);
     List<ReservationDTO> getPendingReservation(String nic,String pending_status);
+    String getGenerateOrderId();
 }
