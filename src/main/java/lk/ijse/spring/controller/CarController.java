@@ -97,4 +97,9 @@ public class CarController {
         return new ResponseUtil(200,"updated Total KM for car",null);
     }
 
+    @GetMapping(path="maintenanceNeedCar",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllMaintenanceNeedCar() {
+        return new ResponseUtil(200,"Ok",carService.getAllMaintenanceNeedCar());
+    }
+
 }

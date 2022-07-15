@@ -90,4 +90,10 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    @Override
+    public List<CarDTO> getAllMaintenanceNeedCar() {
+        return mapper.map(repo.getAllMaintenanceNeedCar(), new TypeToken<List<CarDTO>>() {
+        }.getType());
+    }
+
 }
