@@ -20,4 +20,7 @@ public interface ReservationRepo extends JpaRepository<Reservation, String> {
     @Query(value = "select reservation_id from car_reservation ORDER BY reservation_id DESC LIMIT 1", nativeQuery = true)
     String getGenerateOrderId();
 
+    @Query(value = "select * from car_reservation where reservation_date=?1", nativeQuery = true)
+    List<Reservation> getReservationsByReservation_date(String date);
+
 }

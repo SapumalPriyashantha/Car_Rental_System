@@ -71,8 +71,13 @@ public class ReservationController {
         return new ResponseUtil(200,"ok",reservationService.getPendingReservation(nic,pending_status));
     }
 
-    @GetMapping(path="generateOrderId",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="generateReservationId",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil generateOrderId() {
         return new ResponseUtil(200,"ok",reservationService.getGenerateOrderId());
+    }
+
+    @GetMapping(path="todayReservation",params={"date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil todayReservation(@RequestParam("date")String date) {
+        return new ResponseUtil(200,"ok",reservationService.todayReservation(date));
     }
 }

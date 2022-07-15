@@ -97,5 +97,11 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
+    @Override
+    public List<ReservationDTO> todayReservation(String date) {
+        return mapper.map(repo.getReservationsByReservation_date(date), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
 
 }
