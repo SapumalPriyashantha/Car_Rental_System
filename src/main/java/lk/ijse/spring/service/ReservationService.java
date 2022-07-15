@@ -13,4 +13,5 @@ public interface ReservationService {
     List<ReservationDTO> getPendingReservation(String nic,String pending_status);
     String getGenerateOrderId();
     List<ReservationDTO> todayReservation(String date);
+    List<ReservationDTO> todayPickup(String date);
 }

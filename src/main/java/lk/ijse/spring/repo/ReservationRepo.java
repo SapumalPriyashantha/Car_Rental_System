@@ -23,4 +23,7 @@ public interface ReservationRepo extends JpaRepository<Reservation, String> {
     @Query(value = "select * from car_reservation where reservation_date=?1", nativeQuery = true)
     List<Reservation> getReservationsByReservation_date(String date);
 
+    @Query(value = "select * from car_reservation where pick_up_date=?1", nativeQuery = true)
+    List<Reservation> getReservationsByPick_up_date(String date);
+
 }

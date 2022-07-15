@@ -80,4 +80,9 @@ public class ReservationController {
     public ResponseUtil todayReservation(@RequestParam("date")String date) {
         return new ResponseUtil(200,"ok",reservationService.todayReservation(date));
     }
+
+    @GetMapping(path="todayPickup",params={"date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil todayPickup(@RequestParam("date")String date) {
+        return new ResponseUtil(200,"ok",reservationService.todayPickup(date));
+    }
 }
