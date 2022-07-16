@@ -1,5 +1,6 @@
 package lk.ijse.spring.controller;
 
+import lk.ijse.spring.dto.CarDTO;
 import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.service.DriverService;
@@ -32,6 +33,12 @@ public class DriverController {
     @GetMapping(path="getDriverByNIC",params={"driverNIC"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getDriverByID(@RequestParam("driverNIC")String driverNIC) {
         return new ResponseUtil(200,"Ok",driverService.getDriverByID(driverNIC));
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateDriver(@RequestBody DriverDTO dto) {
+        driverService.updateDriver(dto);
+        return new ResponseUtil(200,"Updated Driver..!",null);
     }
 
 

@@ -42,4 +42,13 @@ public class DriverServiceImpl implements DriverService {
             throw new RuntimeException("No such a Driver..!");
         }
     }
+
+    @Override
+    public void updateDriver(DriverDTO dto) {
+        if (repo.existsById(dto.getNic())) {
+            repo.save(mapper.map(dto, Driver.class));
+        } else {
+            throw new RuntimeException("No such a Driver, Please check driver NIC");
+        }
+    }
 }
