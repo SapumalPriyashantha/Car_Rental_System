@@ -4,4 +4,5 @@ import lk.ijse.spring.dto.DriverDTO;
 
 public interface DriverService {
     void saveDriver(DriverDTO dto);
+    DriverDTO getDriverByID (String driverNIC);
 }

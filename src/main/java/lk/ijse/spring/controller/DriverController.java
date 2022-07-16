@@ -29,5 +29,10 @@ public class DriverController {
         return new ResponseUtil(200,"save Driver",null);
     }
 
+    @GetMapping(path="getDriverByNIC",params={"driverNIC"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getDriverByID(@RequestParam("driverNIC")String driverNIC) {
+        return new ResponseUtil(200,"Ok",driverService.getDriverByID(driverNIC));
+    }
+
 
 }
