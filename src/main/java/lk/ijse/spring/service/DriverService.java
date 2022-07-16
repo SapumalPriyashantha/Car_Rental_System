@@ -9,4 +9,5 @@ public interface DriverService {
     DriverDTO getDriverByID (String driverNIC);
     void updateDriver(DriverDTO dto);
     List<DriverDTO> getAllDrivers();
+    DriverDTO getRandomDriver(String start_date,String end_date);
 }

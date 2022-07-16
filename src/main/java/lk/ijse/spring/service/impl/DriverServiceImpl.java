@@ -57,4 +57,9 @@ public class DriverServiceImpl implements DriverService {
         return mapper.map(repo.findAll(), new TypeToken<List<DriverDTO>>() {
         }.getType());
     }
+
+    @Override
+    public DriverDTO getRandomDriver(String start_date, String end_date) {
+        return mapper.map(repo.getRandomDriver(start_date,end_date),DriverDTO.class);
+    }
 }
