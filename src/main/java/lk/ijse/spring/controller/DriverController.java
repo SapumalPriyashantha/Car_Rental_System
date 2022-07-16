@@ -41,5 +41,8 @@ public class DriverController {
         return new ResponseUtil(200,"Updated Driver..!",null);
     }
 
-
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllDrivers() {
+        return new ResponseUtil(200,"Ok",driverService.getAllDrivers());
+    }
 }

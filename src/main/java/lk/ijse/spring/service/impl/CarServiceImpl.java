@@ -1,11 +1,8 @@
 package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.dto.CarDTO;
-import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.entity.Car;
-import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CarRepo;
-import lk.ijse.spring.repo.CustomerRepo;
 import lk.ijse.spring.service.CarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

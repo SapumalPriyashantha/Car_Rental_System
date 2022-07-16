@@ -51,4 +51,10 @@ public class DriverServiceImpl implements DriverService {
             throw new RuntimeException("No such a Driver, Please check driver NIC");
         }
     }
+
+    @Override
+    public List<DriverDTO> getAllDrivers() {
+        return mapper.map(repo.findAll(), new TypeToken<List<DriverDTO>>() {
+        }.getType());
+    }
 }
