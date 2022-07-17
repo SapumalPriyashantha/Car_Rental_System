@@ -1,9 +1,6 @@
 package lk.ijse.spring.repo;
 
-
-import lk.ijse.spring.entity.Car;
 import lk.ijse.spring.entity.Driver;
-import lk.ijse.spring.entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

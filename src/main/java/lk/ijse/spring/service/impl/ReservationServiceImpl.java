@@ -1,16 +1,7 @@
 package lk.ijse.spring.service.impl;
 
-import lk.ijse.spring.dto.CarDTO;
-import lk.ijse.spring.dto.CustomerDTO;
-import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.dto.ReservationDTO;
-import lk.ijse.spring.entity.Car;
-import lk.ijse.spring.entity.Customer;
-import lk.ijse.spring.entity.Driver;
 import lk.ijse.spring.entity.Reservation;
-import lk.ijse.spring.repo.CarRepo;
-import lk.ijse.spring.repo.CustomerRepo;
-import lk.ijse.spring.repo.DriverRepo;
 import lk.ijse.spring.repo.ReservationRepo;
 import lk.ijse.spring.service.ReservationService;
 import org.modelmapper.ModelMapper;
@@ -108,6 +99,5 @@ public class ReservationServiceImpl implements ReservationService {
         return mapper.map(repo.getReservationsByPick_up_date(date), new TypeToken<List<ReservationDTO>>() {
         }.getType());
     }
-
 
 }

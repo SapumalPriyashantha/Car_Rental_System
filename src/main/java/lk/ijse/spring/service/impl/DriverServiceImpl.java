@@ -1,6 +1,5 @@
 package lk.ijse.spring.service.impl;
 
-import lk.ijse.spring.dto.CarDTO;
 import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Driver;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
