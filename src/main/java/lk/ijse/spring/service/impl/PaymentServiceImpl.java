@@ -69,4 +69,22 @@ public class PaymentServiceImpl  implements PaymentService {
         return mapper.map(repo.getIncome(start_date,end_date), new TypeToken<List<PaymentDTO>>() {
         }.getType());
     }
+
+    @Override
+    public List<PaymentDTO> weeklyIncome(String start_date, String end_date) {
+        return mapper.map(repo.getIncome(start_date,end_date), new TypeToken<List<PaymentDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<PaymentDTO> monthlyIncome(String start_date, String end_date) {
+        return mapper.map(repo.getIncome(start_date,end_date), new TypeToken<List<PaymentDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<PaymentDTO> yearlyIncome(String start_date, String end_date) {
+        return mapper.map(repo.getIncome(start_date,end_date), new TypeToken<List<PaymentDTO>>() {
+        }.getType());
+    }
 }

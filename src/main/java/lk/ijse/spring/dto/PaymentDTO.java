@@ -1,5 +1,6 @@
 package lk.ijse.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.sql.Date;
 @ToString
 public class PaymentDTO {
     private String pay_id;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Kolkata")
     private Date pay_date;
     private int no_of_km;
     private BigDecimal rental_fee;
