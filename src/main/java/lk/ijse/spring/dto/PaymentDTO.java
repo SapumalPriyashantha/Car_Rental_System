@@ -22,4 +22,6 @@ public class PaymentDTO {
     private BigDecimal damage_cost;
     private BigDecimal refund;
     private BigDecimal total_payment;
+
+    private ReservationDTO reservation;
 }
