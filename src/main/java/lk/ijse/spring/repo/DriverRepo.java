@@ -19,4 +19,7 @@ public interface DriverRepo extends JpaRepository<Driver, String> {
     @Query(value = "SELECT * FROM driver WHERE nic NOT IN (SELECT DISTINCT driver_nic FROM car_reservation WHERE  (current_date() BETWEEN pick_up_date AND return_date OR pick_up_date=current_date() OR return_date=current_date())) ", nativeQuery = true)
     List<Driver> todayAvailableDrivers ();
 
+    @Query(value = "SELECT * FROM driver WHERE nic IN (SELECT DISTINCT driver_nic FROM car_reservation WHERE  (current_date() BETWEEN pick_up_date AND return_date OR pick_up_date=current_date() OR return_date=current_date())) ", nativeQuery = true)
+    List<Driver> todayUnavailableDrivers ();
+
 }
