@@ -1,5 +1,6 @@
 package lk.ijse.spring.service.impl;
 
+import lk.ijse.spring.dto.CarDTO;
 import lk.ijse.spring.dto.PaymentDTO;
 import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Car;
@@ -10,9 +11,12 @@ import lk.ijse.spring.repo.PaymentRepo;
 import lk.ijse.spring.repo.ReservationRepo;
 import lk.ijse.spring.service.PaymentService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -58,5 +62,11 @@ public class PaymentServiceImpl  implements PaymentService {
         }else{
             return "Pay-001";
         }
+    }
+
+    @Override
+    public List<PaymentDTO> dailyIncome(String start_date, String end_date) {
+        return mapper.map(repo.getIncome(start_date,end_date), new TypeToken<List<PaymentDTO>>() {
+        }.getType());
     }
 }

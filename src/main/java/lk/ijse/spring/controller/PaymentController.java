@@ -30,4 +30,9 @@ public class PaymentController {
     public ResponseUtil generatePaymentId() {
         return new ResponseUtil(200,"ok",paymentService.generatePaymentId());
     }
+
+    @GetMapping(path="dailyIncome",params={"start_date","end_date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil dailyIncome(@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+        return new ResponseUtil(200,"ok",paymentService.dailyIncome(start_date,end_date));
+    }
 }
