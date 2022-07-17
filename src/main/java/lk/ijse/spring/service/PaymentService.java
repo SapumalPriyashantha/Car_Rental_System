@@ -1,8 +1,6 @@
 package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.PaymentDTO;
-import lk.ijse.spring.entity.Car;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
