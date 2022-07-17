@@ -25,4 +25,9 @@ public class PaymentController {
         paymentService.PaymentForReservation(dto);
         return new ResponseUtil(200,"Payment For Reservation successfully Completed",null);
     }
+
+    @GetMapping(path="generatePaymentId",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil generatePaymentId() {
+        return new ResponseUtil(200,"ok",paymentService.generatePaymentId());
+    }
 }

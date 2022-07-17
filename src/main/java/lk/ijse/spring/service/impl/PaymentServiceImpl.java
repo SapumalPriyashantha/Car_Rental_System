@@ -38,4 +38,25 @@ public class PaymentServiceImpl  implements PaymentService {
             throw new RuntimeException("Payment already done..!");
         }
     }
+
+    @Override
+    public String generatePaymentId() {
+        String Pay_Id = repo.getGenerateOrderId();
+
+        if (Pay_Id != null){
+            int tempId = Integer.
+                    parseInt(Pay_Id.split("Pay-")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                return "Pay-00"+tempId;
+            }else if(tempId<99){
+                return "Pay-0"+tempId;
+            }else{
+                return "Pay-"+tempId;
+            }
+
+        }else{
+            return "Pay-001";
+        }
+    }
 }
