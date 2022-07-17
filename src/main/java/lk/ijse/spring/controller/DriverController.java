@@ -55,4 +55,9 @@ public class DriverController {
     public ResponseUtil DriverScheduleByDate(@RequestParam("driver_nic")String driver_nic,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
         return new ResponseUtil(200,"Ok",driverService.DriverScheduleByDate(driver_nic,start_date,end_date));
     }
+
+    @GetMapping(path="todayAvailableDrivers",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil todayAvailableDrivers() {
+        return new ResponseUtil(200,"Ok",driverService.todayAvailableDrivers());
+    }
 }

@@ -12,4 +12,5 @@ public interface DriverService {
     List<DriverDTO> getAllDrivers();
     DriverDTO getRandomDriver(String start_date,String end_date);
     List<Object>DriverScheduleByDate(String driver_nic,String start_date,String end_date);
+    List<DriverDTO> todayAvailableDrivers();
 }
