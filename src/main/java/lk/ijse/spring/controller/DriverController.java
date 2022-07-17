@@ -60,8 +60,14 @@ public class DriverController {
     public ResponseUtil todayAvailableDrivers() {
         return new ResponseUtil(200,"Ok",driverService.todayAvailableDrivers());
     }
+
     @GetMapping(path="todayUnavailableDrivers",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil todayUnavailableDrivers() {
         return new ResponseUtil(200,"Ok",driverService.todayUnavailableDrivers());
+    }
+
+    @PutMapping(path="changeDriverInReservation",params={"reservation_id","driver_nic"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil changeDriverInReservation(@RequestParam("reservation_id")String reservation_id,@RequestParam("driver_nic")String driver_nic) {
+        return new ResponseUtil(200,"Ok",driverService.changeDriverInReservation(reservation_id,driver_nic));
     }
 }

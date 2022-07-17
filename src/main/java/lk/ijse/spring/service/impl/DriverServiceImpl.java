@@ -6,6 +6,7 @@ import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Driver;
 import lk.ijse.spring.entity.Reservation;
 import lk.ijse.spring.repo.DriverRepo;
+import lk.ijse.spring.repo.ReservationRepo;
 import lk.ijse.spring.service.DriverService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -23,6 +24,9 @@ public class DriverServiceImpl implements DriverService {
 
     @Autowired
     private DriverRepo repo;
+
+    @Autowired
+    private ReservationRepo re_repo;
 
     @Autowired
     private ModelMapper mapper;
@@ -82,5 +86,16 @@ public class DriverServiceImpl implements DriverService {
     public List<DriverDTO> todayUnavailableDrivers() {
         return mapper.map(repo.todayUnavailableDrivers(), new TypeToken<List<DriverDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public ReservationDTO changeDriverInReservation(String reservation_id, String driver_nic) {
+        if (re_repo.existsById(reservation_id)) {
+            Reservation reservation = re_repo.findById(reservation_id).get();
+            reservation.setDriver(repo.findById(driver_nic).get());
+            return mapper.map(reservation,ReservationDTO.class);
+        } else {
+            throw new RuntimeException("No such a Reservation to update...!");
+        }
     }
 }

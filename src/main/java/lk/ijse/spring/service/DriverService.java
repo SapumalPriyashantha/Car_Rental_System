@@ -14,4 +14,5 @@ public interface DriverService {
     List<Object>DriverScheduleByDate(String driver_nic,String start_date,String end_date);
     List<DriverDTO> todayAvailableDrivers();
     List<DriverDTO> todayUnavailableDrivers();
+    ReservationDTO changeDriverInReservation(String reservation_id,String driver_nic);
 }
