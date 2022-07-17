@@ -50,4 +50,9 @@ public class DriverController {
     public ResponseUtil getRandomDriver(@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
         return new ResponseUtil(200,"Ok",driverService.getRandomDriver(start_date,end_date));
     }
+
+    @GetMapping(path="DriverScheduleByDate",params={"driver_nic","start_date","end_date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil DriverScheduleByDate(@RequestParam("driver_nic")String driver_nic,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+        return new ResponseUtil(200,"Ok",driverService.DriverScheduleByDate(driver_nic,start_date,end_date));
+    }
 }

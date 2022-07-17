@@ -2,7 +2,9 @@ package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.dto.CarDTO;
 import lk.ijse.spring.dto.DriverDTO;
+import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Driver;
+import lk.ijse.spring.entity.Reservation;
 import lk.ijse.spring.repo.DriverRepo;
 import lk.ijse.spring.service.DriverService;
 import org.modelmapper.ModelMapper;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -61,5 +64,11 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDTO getRandomDriver(String start_date, String end_date) {
         return mapper.map(repo.getRandomDriver(start_date,end_date),DriverDTO.class);
+    }
+
+    @Override
+    public List<Object> DriverScheduleByDate(String driver_nic, String start_date, String end_date) {
+        return mapper.map(repo.DriverScheduleByDate(driver_nic,start_date,end_date), new TypeToken<List<Object>>() {
+        }.getType());
     }
 }
