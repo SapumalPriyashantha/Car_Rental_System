@@ -19,7 +19,7 @@ public class DriverSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int schedule_id;
-    private Time start_time;
+    private String start_time;
     private Date start_date;
     private Date end_date;
 

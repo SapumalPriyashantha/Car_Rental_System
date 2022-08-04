@@ -21,6 +21,7 @@ public class DriverController {
     @ResponseStatus(HttpStatus.CREATED) //201
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveDriver(@ModelAttribute DriverDTO driverDTO) {
+       driverDTO.setStatus("Available");
         driverService.saveDriver(driverDTO);
         return new ResponseUtil(200,"save Driver",null);
     }
@@ -51,9 +52,9 @@ public class DriverController {
         return new ResponseUtil(200,"Ok",driverService.DriverScheduleByDate(driver_nic,start_date,end_date));
     }
 
-    @GetMapping(path="todayAvailableDrivers",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil todayAvailableDrivers() {
-        return new ResponseUtil(200,"Ok",driverService.todayAvailableDrivers());
+    @GetMapping(path="AvailableDrivers",params={"start_date","end_date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil AvailableDrivers(@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+        return new ResponseUtil(200,"Ok",driverService.AvailableDrivers(start_date,end_date));
     }
 
     @GetMapping(path="todayUnavailableDrivers",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,6 +64,12 @@ public class DriverController {
 
     @PutMapping(path="changeDriverInReservation",params={"reservation_id","driver_nic"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil changeDriverInReservation(@RequestParam("reservation_id")String reservation_id,@RequestParam("driver_nic")String driver_nic) {
-        return new ResponseUtil(200,"Ok",driverService.changeDriverInReservation(reservation_id,driver_nic));
+        driverService.changeDriverInReservation(reservation_id,driver_nic);
+        return new ResponseUtil(200,"Change Driver",null);
+    }
+
+    @GetMapping(path="getDriver",params={"userName","password"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getDriver(@RequestParam("userName")String userName,@RequestParam("password")String password) {
+        return new ResponseUtil(200,"Driver username and password correct",driverService.getDriver(userName,password));
     }
 }

@@ -1,5 +1,6 @@
 package lk.ijse.spring.service.impl;
 
+import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.dto.ReservationDTO;
 import lk.ijse.spring.entity.Driver;
@@ -75,8 +76,8 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public List<DriverDTO> todayAvailableDrivers() {
-        return mapper.map(repo.todayAvailableDrivers(), new TypeToken<List<DriverDTO>>() {
+    public List<DriverDTO> AvailableDrivers(String start_date,String end_date) {
+        return mapper.map(repo.AvailableDrivers(start_date,end_date), new TypeToken<List<DriverDTO>>() {
         }.getType());
     }
 
@@ -87,13 +88,22 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public ReservationDTO changeDriverInReservation(String reservation_id, String driver_nic) {
+    public void changeDriverInReservation(String reservation_id, String driver_nic) {
         if (re_repo.existsById(reservation_id)) {
             Reservation reservation = re_repo.findById(reservation_id).get();
             reservation.setDriver(repo.findById(driver_nic).get());
-            return mapper.map(reservation,ReservationDTO.class);
         } else {
             throw new RuntimeException("No such a Reservation to update...!");
         }
+    }
+
+    @Override
+    public DriverDTO checkDriver(String userName, String password) {
+        return mapper.map(repo.findByDriver_namedAndLicense_no(userName, password), DriverDTO.class);
+    }
+
+    @Override
+    public DriverDTO getDriver(String userName, String password) {
+        return mapper.map(repo.findByDriver_namedAndLicense_no(userName, password), DriverDTO.class);
     }
 }

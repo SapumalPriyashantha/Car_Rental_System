@@ -19,7 +19,7 @@ public class Reservation {
     private Date reservation_date;
     private Date pick_up_date;
     private Date return_date;
-    private Time pick_up_time;
+    private String pick_up_time;
     private BigDecimal waiver_payment;
     private String bank_slip_img;
     private String reservation_status;

@@ -18,7 +18,6 @@ public class PaymentController {
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil PaymentForReservation(@RequestBody PaymentDTO dto) {
-        System.out.println(dto.toString());
         paymentService.PaymentForReservation(dto);
         return new ResponseUtil(200,"Payment For Reservation successfully Completed",null);
     }

@@ -1,5 +1,6 @@
 package lk.ijse.spring.service.impl;
 
+import lk.ijse.spring.dto.AdminDTO;
 import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repo.CustomerRepo;
@@ -60,5 +61,15 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDTO> registeredCustomerByDate() {
         return mapper.map(repo.registeredCustomerByDate(), new TypeToken<List<CustomerDTO>>() {
         }.getType());
+    }
+
+    @Override
+    public CustomerDTO checkCustomer(String userName, String password) {
+        return mapper.map(repo.findCustomerByUser_nameAndPassword(userName, password), CustomerDTO.class);
+    }
+
+    @Override
+    public CustomerDTO getCustomer(String userName, String password) {
+        return mapper.map(repo.findCustomerByUser_nameAndPassword(userName, password), CustomerDTO.class);
     }
 }

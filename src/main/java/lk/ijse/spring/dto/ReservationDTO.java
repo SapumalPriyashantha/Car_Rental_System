@@ -13,15 +13,21 @@ import java.sql.Time;
 @Data
 public class ReservationDTO {
     private String reservation_id;
+
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Kolkata")
     private Date reservation_date;
+
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Kolkata")
     private Date pick_up_date;
+
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Kolkata")
     private Date return_date;
-    @JsonFormat(pattern="HH:mm:ss")
-    private Time pick_up_time;
+
+    private String pick_up_time;
+
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     private BigDecimal waiver_payment;
+
     private String bank_slip_img;
     private String reservation_status;
     private String driver_status;

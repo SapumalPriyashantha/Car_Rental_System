@@ -15,4 +15,5 @@ public interface CarService {
     void updateStatusForCar(String registration_no,String status);
     void updateTotalKMForCar(String registration_no,int KM);
     List<CarDTO> getAllMaintenanceNeedCar();
+    CarDTO getCar(String registration_no);
 }

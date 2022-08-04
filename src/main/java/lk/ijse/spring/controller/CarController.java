@@ -23,11 +23,15 @@ public class CarController {
     @Autowired
     CarService carService;
 
+    String frontImage=null;
+    String backImage=null;
+    String rightImage=null;
+    String leftImage=null;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCar(@RequestPart("file") MultipartFile[] files, @RequestPart("car") CarDTO carDTO) {
-        System.out.println(carDTO.toString());
-//            String pic01 = null; String pic02 = null; String pic03 = null; String pic04 = null;
+
         for (MultipartFile myFile: files) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
@@ -35,26 +39,31 @@ public class CarController {
                 uploadsDir.mkdir();
                 myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
 
-//                if( pic01==null){
-//                    pic01=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-//                }else if (pic02==null){
-//                    pic02=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-//                }else if (pic03==null){
-//                    pic03=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-//                }else {
-//                    pic04=uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename();
-//                }
+                if( frontImage==null){
+                    frontImage="uploads/"+myFile.getOriginalFilename();
+                }else if (backImage==null){
+                    backImage="uploads/"+myFile.getOriginalFilename();
+                }else if (rightImage==null){
+                    rightImage="uploads/"+myFile.getOriginalFilename();
+                }else {
+                    leftImage="uploads/"+myFile.getOriginalFilename();
+                }
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
                 return new ResponseUtil(500, " Registration failed", null);
             }
         }
 
-//        carDTO.getCarImgDetailDTO().setFront("front.png");
-//        carDTO.getCarImgDetailDTO().setBack("Back.png");
-//        carDTO.getCarImgDetailDTO().setSide_01("side01.png");
-//        carDTO.getCarImgDetailDTO().setSide_02("side02.png");
-        //car eke pic save wen nehe id eka genaret wen nehe
+        carDTO.getCarImgDetail().setFront(frontImage);
+        carDTO.getCarImgDetail().setBack(backImage);
+        carDTO.getCarImgDetail().setSide_01(rightImage);
+        carDTO.getCarImgDetail().setSide_02(leftImage);
+
+        System.out.println(frontImage);
+        System.out.println(backImage);
+        System.out.println(rightImage);
+        System.out.println(leftImage);
+
         carService.saveCar(carDTO);
 
         return new ResponseUtil(200,"Registration Success",null);
@@ -100,6 +109,11 @@ public class CarController {
     @GetMapping(path="maintenanceNeedCar",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllMaintenanceNeedCar() {
         return new ResponseUtil(200,"Ok",carService.getAllMaintenanceNeedCar());
+    }
+
+    @GetMapping(path="getCar",params={"registration_no"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getCar(@RequestParam("registration_no")String registration_no) {
+        return new ResponseUtil(200,"Ok",carService.getCar(registration_no));
     }
 
 }

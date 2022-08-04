@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString
+//@ToString
 
 public class CustomerDTO {
     private String nic;

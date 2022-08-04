@@ -14,7 +14,7 @@ import java.sql.Time;
 @ToString
 
 public class DriverScheduleDTO {
-    private Time start_time;
+    private String start_time;
     private Date start_date;
     private Date end_date;
 }

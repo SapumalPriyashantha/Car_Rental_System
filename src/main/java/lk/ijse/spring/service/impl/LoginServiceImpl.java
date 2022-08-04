@@ -24,20 +24,22 @@ public class LoginServiceImpl implements LoginService {
     private AdminRepo admin_repo;
 
     @Override
-    public String checkUser_nameAndPass_word(String user_name, String pass_word) {
-        System.out.println("working");
+    public Object checkUser_nameAndPass_word(String user_name, String pass_word) {
         Customer customer = customer_repo.findCustomerByUser_nameAndPassword(user_name, pass_word);
         Driver driver = driver_repo.findByDriver_namedAndLicense_no(user_name, pass_word);
         Admin admin = admin_repo.findByAdmin_nameAndPassword(user_name, pass_word);
 
         if(customer_repo.findCustomerByUser_nameAndPassword(user_name, pass_word) != null){
-            return "That was a Customer";
+            return customer_repo.findCustomerByUser_nameAndPassword(user_name, pass_word);
+
         }else if (driver_repo.findByDriver_namedAndLicense_no(user_name, pass_word) != null){
-            return "That was a Driver";
+            return driver_repo.findByDriver_namedAndLicense_no(user_name, pass_word);
+
         }else if (admin_repo.findByAdmin_nameAndPassword(user_name, pass_word) != null){
-            return "That was a Admin";
+            return admin_repo.findByAdmin_nameAndPassword(user_name, pass_word);
+
         }else {
-           return "Incorrect User name OR pass word";
+           throw new RuntimeException("Incorrect User name OR pass word");
         }
     }
 }

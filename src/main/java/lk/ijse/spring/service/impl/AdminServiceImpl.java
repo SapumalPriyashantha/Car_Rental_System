@@ -1,6 +1,7 @@
 package lk.ijse.spring.service.impl;
 
 import lk.ijse.spring.dto.AdminDTO;
+import lk.ijse.spring.dto.CustomerDTO;
 import lk.ijse.spring.dto.DriverDTO;
 import lk.ijse.spring.entity.Admin;
 import lk.ijse.spring.entity.Driver;
@@ -26,5 +27,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void saveAdmin(AdminDTO dto) {
         repo.save(mapper.map(dto, Admin.class));
+    }
+
+    @Override
+    public AdminDTO checkAdmin(String userName, String password) {
+        return mapper.map(repo.findByAdmin_nameAndPassword(userName, password), AdminDTO.class);
+    }
+
+    @Override
+    public AdminDTO getAdmin(String userName, String password) {
+        return mapper.map(repo.findByAdmin_nameAndPassword(userName, password), AdminDTO.class);
     }
 }

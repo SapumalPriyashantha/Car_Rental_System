@@ -23,13 +23,14 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveReservation(@RequestPart("file") MultipartFile[] files, @RequestPart("reservation") ReservationDTO reservationDTO) {
-        System.out.println(reservationDTO.toString());
+
         for (MultipartFile myFile: files) {
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
                 File uploadsDir = new File(projectPath + "/uploads");
                 uploadsDir.mkdir();
                 myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+                reservationDTO.setBank_slip_img("uploads/"+myFile.getOriginalFilename());
 
             } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
@@ -37,12 +38,9 @@ public class ReservationController {
             }
         }
 
-//        customerDTO.setLicense_img("uploads/"+customerDTO.getLicense_img());
-//        customerDTO.setNic_img("uploads/"+customerDTO.getNic_img());
-
         reservationService.saveReservation(reservationDTO);
 
-        return new ResponseUtil(200,"Registration Success",null);
+        return new ResponseUtil(200,"Reservation Success",null);
     }
 
     @GetMapping(path = "/{nic}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -50,9 +48,9 @@ public class ReservationController {
         return new ResponseUtil(200,"Ok",reservationService.searchReservationByCustomerId(id));
     }
 
-    @PutMapping(path="updateReservationStatus",params={"reservation_id","reservation_status"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateReservationStatus(@RequestParam("reservation_id")String reservation_id,@RequestParam("reservation_status")String reservation_status) {
-        reservationService.updateReservationStatus(reservation_id,reservation_status);
+    @PutMapping(path="updateReservationStatus",params={"reservation_id","reservation_status","status_reason"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateReservationStatus(@RequestParam("reservation_id")String reservation_id,@RequestParam("reservation_status")String reservation_status,@RequestParam("status_reason")String status_reason) {
+        reservationService.updateReservationStatus(reservation_id,reservation_status,status_reason);
         return new ResponseUtil(200,"Updated Reservation Status",null);
     }
 
@@ -84,5 +82,20 @@ public class ReservationController {
     @GetMapping(path="todayPickup",params={"date"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil todayPickup(@RequestParam("date")String date) {
         return new ResponseUtil(200,"ok",reservationService.todayPickup(date));
+    }
+
+    @GetMapping(path="getAllPendingReservation",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllPendingReservation() {
+        return new ResponseUtil(200,"ok",reservationService.getAllPendingReservation());
+    }
+
+    @GetMapping(path="getAllAcceptReservation",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllAcceptReservation() {
+        return new ResponseUtil(200,"ok",reservationService.getAllAcceptReservation());
+    }
+
+    @GetMapping(path="DriverSchedule",params={"driver_nic","start_date","end_date"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil DriverSchedule(@RequestParam("driver_nic")String driver_nic,@RequestParam("start_date")String start_date,@RequestParam("end_date")String end_date) {
+        return new ResponseUtil(200,"Ok",reservationService.DriverSchedule(driver_nic,start_date,end_date));
     }
 }

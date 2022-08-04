@@ -93,4 +93,9 @@ public class CarServiceImpl implements CarService {
         }.getType());
     }
 
+    @Override
+    public CarDTO getCar(String registration_no) {
+        return mapper.map(repo.findById(registration_no).get(), CarDTO.class);
+    }
+
 }

@@ -24,4 +24,9 @@ public class AdminController {
         adminService.saveAdmin(adminDTO);
         return new ResponseUtil(200,"save Admin",null);
     }
+
+    @GetMapping(path="getAdmin",params={"userName","password"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getDriver(@RequestParam("userName")String userName,@RequestParam("password")String password) {
+        return new ResponseUtil(200,"Admin username and password correct",adminService.getAdmin(userName,password));
+    }
 }

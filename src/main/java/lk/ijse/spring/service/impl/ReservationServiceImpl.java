@@ -39,10 +39,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void updateReservationStatus(String reservation_id, String reservation_status) {
+    public void updateReservationStatus(String reservation_id, String reservation_status,String status_reason) {
         if (repo.existsById(reservation_id)) {
             Reservation reservation = repo.findById(reservation_id).get();
             reservation.setReservation_status(reservation_status);
+            reservation.setReason(status_reason);
             repo.save(reservation);
         } else {
             throw new RuntimeException("No Such Reservation To Update Status..! Please Check the ID..!");
@@ -70,10 +71,11 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public String getGenerateOrderId() {
         String RE_Id = repo.getGenerateOrderId();
+        System.out.println(RE_Id);
 
         if (RE_Id != null){
             int tempId = Integer.
-                    parseInt(RE_Id.split("re")[1]);
+                    parseInt(RE_Id.split("RE-")[1]);
             tempId=tempId+1;
             if (tempId<9){
                 return "RE-00"+tempId;
@@ -97,6 +99,24 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<ReservationDTO> todayPickup(String date) {
         return mapper.map(repo.getReservationsByPick_up_date(date), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<ReservationDTO> getAllPendingReservation() {
+        return mapper.map(repo.getAllPendingReservation(), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<ReservationDTO> getAllAcceptReservation() {
+        return mapper.map(repo.getAllAcceptReservation(), new TypeToken<List<ReservationDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public List<ReservationDTO> DriverSchedule(String driver_nic, String start_date, String end_date) {
+        return mapper.map(repo.DriverSchedule(driver_nic,start_date,end_date), new TypeToken<List<ReservationDTO>>() {
         }.getType());
     }
 

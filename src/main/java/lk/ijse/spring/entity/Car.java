@@ -35,6 +35,6 @@ public class Car {
     @JoinColumn
     private CarImgDetail carImgDetail;
 
-    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "car",cascade = CascadeType.ALL)
     private List<Reservation> reservations;
 }
