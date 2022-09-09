@@ -26,5 +26,11 @@
 * After the customer completed the above steps, the admin can confirm
 * After the customer returns the car, a brief inspection will be done to the car and if the car is damaged or harmed, an appropriate amount will be deducted from the
   Loss Damage Waiver payment and the rest will be returned to the customer
+  
+  
+## <h2 align="center">Languages / Frameworks / Tools / Others:</h2>
+* Java
+* Spring MVC
+* Leyered Architecture
 
 
